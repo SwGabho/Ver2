@@ -1,4 +1,4 @@
-package com.example.demo.billetera;
+package com.example.demo.producto;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,41 +6,38 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequestMapping("/api/gabho")
-@RequiredArgsConstructor
-public class BilleteraController {
+public class ProductoController {
 
     // Inyección de dependencias
     @Autowired
-    private BilleteraService billeteraService;
+    private ProductoService billeteraService;
 
     // Consultar todos
     @GetMapping()
-    public List<Billetera> findAll() {
+    public List<Producto> findAll() {
         return billeteraService.findAll();
     }
 
     // Consultar por id
     @GetMapping("/{id}")
-    public Optional<Billetera> findById(@PathVariable Long id) {
+    public Optional<Producto> findById(@PathVariable Long id) {
         return billeteraService.findById(id);
     }
 
     // Guardar
     @PostMapping()
-    public Billetera save(@RequestBody Billetera entity) {
+    public Producto save(@RequestBody Producto entity) {
         return billeteraService.save(entity);
     }
 
-    // Actualizar
+  /*   // Actualizar
     @PutMapping("/{id}")
     public Optional<Billetera> update(@PathVariable Long id, @RequestBody Billetera nuevosDatos) {
         return billeteraService.update(id, nuevosDatos);
     }
-
+*/
     // Eliminar
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id) {

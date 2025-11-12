@@ -20,7 +20,7 @@ public class BilleteraService {
         return billeteraRepository.findAll();
     }
 
-    // Consultar por ID
+    // Consultar por id
     public Optional<Billetera> findById(Long id) {
         return billeteraRepository.findById(id);
     }
@@ -29,28 +29,21 @@ public class BilleteraService {
     public Billetera save(Billetera entity) {
         return billeteraRepository.save(entity);
     }
-/* 
+ 
     // Actualizar un registro
-    public Optional<Billetera> update(Long id, Billetera nuevosDatos) {
-        return billeteraRepository.findById(id)
-            .map(billeteraExistente -> {
-                // Aquí asignamos los nuevos valores (debes adaptar los campos a tu entidad)
-                billeteraExistente.setNombre(nuevosDatos.getNombre());
-                billeteraExistente.setSaldo(nuevosDatos.getSaldo());
-                billeteraExistente.setMoneda(nuevosDatos.getMoneda());
+    public Optional<Billetera> update(Long id, Billetera billetera) {
+        return billeteraRepository.findById(id) .map(existing -> {
+                existing.setColor(billetera.getColor()); // Aquí asignamos los nuevos valores (debes adaptar los campos a tu entidad)
+                existing.setPropietario(billetera.getPropietario());
+                existing.setCosto(billetera.getCosto());
                 // Luego guardamos la entidad actualizada
-                return billeteraRepository.save(billeteraExistente);
+                return billeteraRepository.save(existing);
             });
     }
-*/
-    // Borrar un registro
-    public boolean delete(Long id) {
-        if (billeteraRepository.existsById(id)) {
-            billeteraRepository.deleteById(id);
-            return true; // Eliminación exitosa
-        }
-        return false; // No se encontró el ID
-    }
 
-    /* El sapo no se lava el pie, no se lava pero no quiere */
+    // Borrar un registro
+    public boolean delete(Long id){
+        billeteraRepository.deleteById(id);
+        return false;
+    } 
 }
